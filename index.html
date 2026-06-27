@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>AWS SA 復習クイズ</title>
+  <title>AWS CP 復習クイズ</title>
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
@@ -473,7 +473,7 @@
 <!-- ==================== HOME ==================== -->
 <div id="screen-home" class="screen active">
   <div class="home-header">
-    <h1>AWS SA 復習クイズ</h1>
+    <h1>AWS CP 復習クイズ</h1>
     <p>間違えた問題を徹底的に復習しよう</p>
   </div>
 
@@ -636,104 +636,117 @@
   </div>
 
   <div class="card ref-section">
-    <div class="section-label">出題ドメインの比率（SAA-C03）</div>
+    <div class="section-label">出題ドメインの比率（CLF-C02）</div>
     <table>
       <tr><th>比率</th><th>ドメイン</th></tr>
-      <tr><td>30%</td><td>Domain 1: セキュアなアーキテクチャの設計</td></tr>
-      <tr><td>26%</td><td>Domain 2: 弾力性に優れたアーキテクチャの設計</td></tr>
-      <tr><td>24%</td><td>Domain 3: 高パフォーマンスアーキテクチャの設計</td></tr>
-      <tr><td>20%</td><td>Domain 4: コスト最適化アーキテクチャの設計</td></tr>
+      <tr><td>24%</td><td>Domain 1: クラウドのコンセプト</td></tr>
+      <tr><td>30%</td><td>Domain 2: セキュリティとコンプライアンス</td></tr>
+      <tr><td>34%</td><td>Domain 3: クラウドテクノロジーとサービス</td></tr>
+      <tr><td>12%</td><td>Domain 4: 請求・価格設定・サポート</td></tr>
     </table>
   </div>
 
   <div class="card ref-section">
-    <div class="section-label">① サービス選定の基本フロー</div>
-    <ol>
-      <li>「何を実現したいか」を特定する（HA / DR / スケール / セキュリティ / コスト）</li>
-      <li>「どの制約があるか」を読む（オンプレ連携 / レイテンシ / コスト上限 / 既存DB）</li>
-      <li>候補サービスを比較する（以下の対比表を参照）</li>
-      <li>選択肢の中で「AWSのベストプラクティスに最も沿っているか」で選ぶ</li>
-    </ol>
+    <div class="section-label">① クラウドの6つのメリット（必須暗記）</div>
+    <ul>
+      <li>初期費用が不要（資本的支出 → 変動費）</li>
+      <li>規模の経済によるコスト削減</li>
+      <li>キャパシティの予測が不要（必要なときに拡張・縮小）</li>
+      <li>スピードと俊敏性の向上</li>
+      <li>データセンター運用への投資が不要</li>
+      <li>グローバル展開を数分で実現</li>
+    </ul>
   </div>
 
   <div class="card ref-section">
-    <div class="section-label">② よく問われる対比・使い分け</div>
+    <div class="section-label">② 共有責任モデル</div>
+    <table>
+      <tr><th>AWSの責任（クラウド自体のセキュリティ）</th><th>顧客の責任（クラウド内のセキュリティ）</th></tr>
+      <tr><td>データセンターの物理的セキュリティ</td><td>IAMユーザー・権限の管理</td></tr>
+      <tr><td>ハードウェア・ネットワーク・ストレージ</td><td>OSパッチ・アプリの設定</td></tr>
+      <tr><td>マネージドサービスのOS管理（RDS等）</td><td>データの暗号化設定</td></tr>
+      <tr><td>グローバルインフラの維持</td><td>セキュリティグループ・ネットワークACL</td></tr>
+    </table>
+  </div>
+
+  <div class="card ref-section">
+    <div class="section-label">③ AWSグローバルインフラ</div>
+    <ul>
+      <li><b>リージョン</b> → 地理的に独立したデータセンター群（例: ap-northeast-1 = 東京）</li>
+      <li><b>アベイラビリティゾーン（AZ）</b> → 1リージョン内の独立した複数データセンター。障害が伝播しない設計</li>
+      <li><b>エッジロケーション</b> → CloudFront のキャッシュ拠点。AZより多く世界中に存在</li>
+      <li><b>Local Zone</b> → 特定都市に超低レイテンシを提供するインフラ拡張</li>
+    </ul>
+  </div>
+
+  <div class="card ref-section">
+    <div class="section-label">④ 主要サービス早見表</div>
+    <p class="ref-sub">コンピューティング</p>
+    <table>
+      <tr><th>サービス</th><th>一言説明</th></tr>
+      <tr><td>EC2</td><td>仮想サーバー。OSレベルで管理が必要</td></tr>
+      <tr><td>Lambda</td><td>サーバーレス関数。コード実行時のみ課金</td></tr>
+      <tr><td>Elastic Beanstalk</td><td>Webアプリのデプロイを自動化（PaaS的）</td></tr>
+      <tr><td>ECS / EKS</td><td>コンテナ実行（ECS=AWS独自、EKS=Kubernetes）</td></tr>
+    </table>
     <p class="ref-sub">ストレージ</p>
     <table>
-      <tr><th>用途</th><th>サービス</th></tr>
-      <tr><td>オブジェクト（大量・安価）</td><td>S3</td></tr>
-      <tr><td>EC2 ブロックストレージ</td><td>EBS</td></tr>
-      <tr><td>複数EC2 共有ファイル</td><td>EFS</td></tr>
-      <tr><td>長期アーカイブ（安価）</td><td>S3 Glacier</td></tr>
-      <tr><td>ハイブリッド キャッシュ</td><td>Storage Gateway</td></tr>
+      <tr><th>サービス</th><th>一言説明</th></tr>
+      <tr><td>S3</td><td>オブジェクトストレージ。画像・動画・バックアップ等</td></tr>
+      <tr><td>EBS</td><td>EC2に接続するブロックストレージ（HDDのようなもの）</td></tr>
+      <tr><td>EFS</td><td>複数EC2から同時アクセスできるファイルストレージ</td></tr>
+      <tr><td>S3 Glacier</td><td>長期アーカイブ。取り出しに時間がかかる代わりに安価</td></tr>
     </table>
     <p class="ref-sub">データベース</p>
     <table>
-      <tr><th>用途</th><th>サービス</th></tr>
-      <tr><td>リレーショナル / 高可用性</td><td>RDS / Aurora</td></tr>
-      <tr><td>NoSQL / ミリ秒レイテンシ</td><td>DynamoDB</td></tr>
-      <tr><td>インメモリキャッシュ</td><td>ElastiCache (Redis / Memcached)</td></tr>
-      <tr><td>DWH / 分析</td><td>Redshift</td></tr>
-      <tr><td>全文検索</td><td>OpenSearch</td></tr>
+      <tr><th>サービス</th><th>一言説明</th></tr>
+      <tr><td>RDS</td><td>マネージドRDB（MySQL/PostgreSQL/Oracle等）</td></tr>
+      <tr><td>Aurora</td><td>AWS独自の高性能RDB。RDSより高速・高可用</td></tr>
+      <tr><td>DynamoDB</td><td>フルマネージドNoSQL。ミリ秒レイテンシ</td></tr>
+      <tr><td>Redshift</td><td>データウェアハウス。大規模分析向け</td></tr>
     </table>
-    <p class="ref-sub">コンピューティング</p>
+    <p class="ref-sub">ネットワーキング</p>
     <table>
-      <tr><th>用途</th><th>サービス</th></tr>
-      <tr><td>汎用仮想サーバー</td><td>EC2</td></tr>
-      <tr><td>イベント駆動・短時間処理</td><td>Lambda</td></tr>
-      <tr><td>コンテナ（マネージド）</td><td>ECS / Fargate</td></tr>
-      <tr><td>Kubernetes</td><td>EKS</td></tr>
-      <tr><td>バッチ処理</td><td>AWS Batch</td></tr>
+      <tr><th>サービス</th><th>一言説明</th></tr>
+      <tr><td>VPC</td><td>仮想ネットワーク。AWS内の論理的な隔離空間</td></tr>
+      <tr><td>Route 53</td><td>DNSサービス。ドメイン管理・ルーティング</td></tr>
+      <tr><td>CloudFront</td><td>CDN。エッジロケーションでコンテンツを高速配信</td></tr>
+      <tr><td>Direct Connect</td><td>オンプレとAWSを専用線で接続（VPNより安定・高速）</td></tr>
     </table>
   </div>
 
   <div class="card ref-section">
-    <div class="section-label">③ HA / DR パターン</div>
-    <ul>
-      <li><b>マルチAZ</b> → 同一リージョン内の高可用性（RDS Multi-AZ、ALB、EFS）</li>
-      <li><b>マルチリージョン</b> → 地理的DR（Route 53 フェイルオーバー、S3 CRR、Aurora Global）</li>
-      <li><b>Auto Scaling + ELB</b> → スケーラビリティ + 自動復旧</li>
-      <li><b>RTO / RPO の使い分け</b>
-        <ul>
-          <li>Backup &amp; Restore: RPO/RTO 長い・最安</li>
-          <li>Pilot Light: コア機能のみ常時稼働</li>
-          <li>Warm Standby: 縮退版を常時稼働</li>
-          <li>Multi-Site Active/Active: RTO≈0・最高コスト</li>
-        </ul>
-      </li>
-    </ul>
+    <div class="section-label">⑤ EC2購入オプション</div>
+    <table>
+      <tr><th>オプション</th><th>特徴</th><th>向いているケース</th></tr>
+      <tr><td>オンデマンド</td><td>使った分だけ課金</td><td>短期・不定期・テスト</td></tr>
+      <tr><td>リザーブド</td><td>1〜3年契約で最大72%割引</td><td>常時稼働の本番環境</td></tr>
+      <tr><td>Savings Plans</td><td>使用量をコミットして割引</td><td>柔軟な割引（EC2以外も対象）</td></tr>
+      <tr><td>スポット</td><td>余剰容量を最大90%割引。中断あり</td><td>バッチ・中断許容ワークロード</td></tr>
+      <tr><td>Dedicated Host</td><td>物理サーバーを専有</td><td>ライセンス持ち込み・コンプライアンス</td></tr>
+    </table>
   </div>
 
   <div class="card ref-section">
-    <div class="section-label">④ セキュリティの考え方</div>
-    <ul>
-      <li><b>最小権限の原則</b> → IAM ポリシーは必要最小限のアクションだけ許可</li>
-      <li><b>暗号化</b> → 保存時: SSE-S3 / SSE-KMS / SSE-C、転送時: TLS / HTTPS</li>
-      <li><b>ネットワーク分離</b> → Public/Private サブネット、NAT Gateway、Security Group vs NACL</li>
-      <li><b>モニタリング</b> → CloudTrail（API記録）/ GuardDuty（脅威検知）/ Config（設定変更監視）</li>
-      <li><b>WAF vs Shield</b> → WAF: L7 (SQLi/XSS)、Shield Standard: DDoS 自動、Shield Advanced: 手動対応付き</li>
-    </ul>
+    <div class="section-label">⑥ サポートプラン比較</div>
+    <table>
+      <tr><th>プラン</th><th>月額</th><th>テクニカルサポート</th><th>レスポンス</th></tr>
+      <tr><td>Basic</td><td>無料</td><td>なし（ドキュメントのみ）</td><td>−</td></tr>
+      <tr><td>Developer</td><td>$29〜</td><td>メール（1名）</td><td>営業時間内24h</td></tr>
+      <tr><td>Business</td><td>$100〜</td><td>電話・チャット</td><td>24/7、緊急1h</td></tr>
+      <tr><td>Enterprise On-Ramp</td><td>$5,500〜</td><td>TAM（プール）</td><td>緊急30分</td></tr>
+      <tr><td>Enterprise</td><td>$15,000〜</td><td>専任TAM</td><td>緊急15分</td></tr>
+    </table>
   </div>
 
   <div class="card ref-section">
-    <div class="section-label">⑤ コスト最適化のキーワード</div>
+    <div class="section-label">⑦ IAMの基本</div>
     <ul>
-      <li>Reserved Instances / Savings Plans → 1〜3年コミット、最大72%割引</li>
-      <li>Spot Instances → 中断許容バッチ処理に最安</li>
-      <li>S3 ライフサイクル → Standard → IA → Glacier で段階的に安く</li>
-      <li>Lambda / Fargate → アイドル時コスト0のサーバーレス</li>
-      <li>コスト可視化 → Cost Explorer、Budgets アラート</li>
-    </ul>
-  </div>
-
-  <div class="card ref-section">
-    <div class="section-label">⑥ 問題を読むときの注意点</div>
-    <ul>
-      <li>「最もコスト効率が良い」→ サーバーレス / Spot / Reserved を優先</li>
-      <li>「最小限の運用負荷」→ マネージドサービス（RDS > EC2上のMySQL）</li>
-      <li>「既存オンプレと接続」→ Direct Connect / VPN / Storage Gateway</li>
-      <li>「リアルタイム処理」→ Kinesis / Lambda / SQS FIFO</li>
-      <li>「疎結合」→ SQS でキュー分離、SNS でファンアウト</li>
+      <li><b>rootユーザー</b> → 日常業務では使わない。MFAを必ず設定</li>
+      <li><b>IAMユーザー</b> → 1人に1アカウント。グループで権限管理</li>
+      <li><b>IAMロール</b> → EC2やLambdaなどAWSサービスに割り当てる権限</li>
+      <li><b>最小権限の原則</b> → 必要最低限のアクションのみ許可</li>
+      <li><b>MFA</b> → 多要素認証。rootと管理者ユーザーには必須</li>
     </ul>
   </div>
 </div>
